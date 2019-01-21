@@ -16,7 +16,7 @@ AULA VIRTUAL - MOODDLE
 ### Auxiliary tools
 #### TRELLO
 * To organize the tasks and assign them we have used the trello tool:
- [Trello grupo 10](http://daringfireball.net/projects/markdown/syntax).
+ [Trello grupo 10](https://trello.com/b/kwE4oDnN/grupo10-daw).
 * For the development of the application we have used 
 
 

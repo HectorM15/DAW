@@ -12,11 +12,12 @@ AULA VIRTUAL - MOODDLE
 | Ana Álvarez Ortiz| a.alvarezo.2016@alumnos.urjc.es   | ana11alvarez   |
 | Aitana Cerezo Camino  | a.cerezoc.2016@alumnos.urjc.es|Aitanaceca    |
 | Sandra Cañadas Gómez | s.canadas.2016@alumnos.urjc.es    |   sandra1012     |
+| Ernesto Baltasar Nve Obono | eb.nve@alumnos.urjc.es    |   nveobono     |
 
 ### Auxiliary tools
 #### TRELLO
 * To organize the tasks and assign them we have used the trello tool:
- [Trello grupo 10](https://trello.com/b/kwE4oDnN/grupo10-daw).
+ [Trello grupo 9](https://trello.com/b/kwE4oDnN/grupo10-daw).
 * For the development of the application we have used 
 
 

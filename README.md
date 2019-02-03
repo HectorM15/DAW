@@ -37,13 +37,13 @@ AULA VIRTUAL - MOODDLE
 ### Screenshots
 Se incluirán capturas de pantalla de cada una de las páginas principales que hayan sido maquetadas. Se acompañarán con una breve descripción en cada una de ellas (un párrafo como mucho).
 
-· #Login
+#Login
  ![login](https://user-images.githubusercontent.com/43374601/52182518-44be2800-27fe-11e9-9876-d42bac583179.png)
  
-· ##Started View Teacher
+##Started View Teacher
  ![started view teacher](https://user-images.githubusercontent.com/43374601/52182539-72a36c80-27fe-11e9-922e-db741b836e94.jpeg)
 
-· ###Started View Student / Visitor
+###Started View Student / Visitor
   ![started view student - visitor](https://user-images.githubusercontent.com/43374601/52182537-6d462200-27fe-11e9-8669-13907833dc9a.jpeg)
 
 · Concept View Teacher

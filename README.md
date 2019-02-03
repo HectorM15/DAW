@@ -38,6 +38,9 @@ AULA VIRTUAL - MOODDLE
 Se incluirán capturas de pantalla de cada una de las páginas principales que hayan sido maquetadas. Se acompañarán con una breve descripción en cada una de ellas (un párrafo como mucho).
 ## Navigation diagrams
 Para mostrar la navegación se creará un diagrama en el que se indicará desde qué página se puede navegar hasta otras páginas. Para ello, las páginas del diagrama pueden ser capturas de pantalla en miniatura de las maquetaciones que se hayan realizado.
+
+![diagrama de navegacion](https://user-images.githubusercontent.com/43374601/52182443-987c4180-27fd-11e9-88c2-d7ceab0f55ea.jpeg)
+
 ## Bibliography
 1. [Página principal]( https://www.creative-tim.com/product/material-dashboard)
 2. [Demo](https://demos.creative-tim.com/material-dashboard/examples/dashboard.html)

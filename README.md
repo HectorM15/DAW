@@ -36,6 +36,14 @@ AULA VIRTUAL - MOODDLE
 ## PHASE 1
 ### Screenshots
 Se incluirán capturas de pantalla de cada una de las páginas principales que hayan sido maquetadas. Se acompañarán con una breve descripción en cada una de ellas (un párrafo como mucho).
+
+· Login
+· Started View Teacher
+· Started View Student / Visitor
+· Concept View Teacher
+· Concept View Student / Visitor
+· Questions
+
 ## Navigation diagrams
 Para mostrar la navegación se creará un diagrama en el que se indicará desde qué página se puede navegar hasta otras páginas. Para ello, las páginas del diagrama pueden ser capturas de pantalla en miniatura de las maquetaciones que se hayan realizado.
 

@@ -18,8 +18,12 @@ AULA VIRTUAL - MOODDLE
 #### TRELLO
 * To organize the tasks and assign them we have used the trello tool:
  [Trello grupo 9](https://trello.com/b/kwE4oDnN/grupo10-daw).
+<<<<<<< HEAD
 * For the development of the application we have used : WEBSTROM
 * The requirements document: https://docs.google.com/document/d/1eq-zIDgxicw_UoEpP-LEa3dN-9cM59FqMHtBGM7VUPw/edit?usp=sharing
+=======
+* For the development of the application we have used 
+>>>>>>> 3d6326bbc2811d7c7d72f07b332099b56f358353
 
 
 ### Bibliography
@@ -36,6 +40,7 @@ AULA VIRTUAL - MOODDLE
 
 ## PHASE 1
 ### Screenshots
+<<<<<<< HEAD
 
 Login: It is a view, where the user's login is required. There are three login options: through Facebook, twitter or Google, by using email and password or in guest / visitor mode. Depending on the type of user, it takes us to the corresponding main view type.
 
@@ -65,6 +70,33 @@ Questions: It is a view to add questions, where in each type of question there i
 ## Navigation diagrams
 
 ![diagrama de navegacion](https://user-images.githubusercontent.com/43374601/52230742-772c5b80-28b8-11e9-94e1-6429b913092a.jpeg)
+=======
+Se incluirán capturas de pantalla de cada una de las páginas principales que hayan sido maquetadas. Se acompañarán con una breve descripción en cada una de ellas (un párrafo como mucho).
+
+# Login
+ ![login](https://user-images.githubusercontent.com/43374601/52182518-44be2800-27fe-11e9-9876-d42bac583179.png)
+ 
+## Started View Teacher
+ ![started view teacher](https://user-images.githubusercontent.com/43374601/52182539-72a36c80-27fe-11e9-922e-db741b836e94.jpeg)
+
+### Started View Student / Visitor
+  ![started view student - visitor](https://user-images.githubusercontent.com/43374601/52182537-6d462200-27fe-11e9-8669-13907833dc9a.jpeg)
+
+· Concept View Teacher
+ ![concept teacher](https://user-images.githubusercontent.com/43374601/52182541-76cf8a00-27fe-11e9-8787-7a096d00e4ce.png)
+ ![concept teacher 2](https://user-images.githubusercontent.com/43374601/52182542-7a631100-27fe-11e9-8198-3d5305f27f13.png)
+ 
+· Concept View Student / Visitor
+ ![concept student](https://user-images.githubusercontent.com/43374601/52182546-7cc56b00-27fe-11e9-9dbd-a3468ad1c9f1.png)
+ 
+· Questions
+ ![questions](https://user-images.githubusercontent.com/43374601/52182549-7fc05b80-27fe-11e9-9697-4bb71a6574d5.png)
+
+## Navigation diagrams
+Para mostrar la navegación se creará un diagrama en el que se indicará desde qué página se puede navegar hasta otras páginas. Para ello, las páginas del diagrama pueden ser capturas de pantalla en miniatura de las maquetaciones que se hayan realizado.
+
+![diagrama de navegacion](https://user-images.githubusercontent.com/43374601/52182443-987c4180-27fd-11e9-88c2-d7ceab0f55ea.jpeg)
+>>>>>>> 3d6326bbc2811d7c7d72f07b332099b56f358353
 
 ## Bibliography
 1. [Página principal]( https://www.creative-tim.com/product/material-dashboard)
@@ -494,5 +526,9 @@ We use IntelliJ IDEA Ultimate and Docker-Desktop. When we created the configurat
 ### Preparation of development environment
  Se añadirá a las instrucciones cómo instalar y configurar el entorno de desarrollo para poder compilar y ejecutar la aplicación SPA con Angular.
 ### Class diagram and templates
+<<<<<<< HEAD
  Reflejará las clases y templates del código Angular. El diagrama deberá diferenciar claramente qué elementos son componentes y cómo se relacionan entre sí (relaciones padre-hijo). También se deberán incluir los servicios y el resto de clases auxiliares.
+=======
+ Reflejará las clases y templates del código Angular. El diagrama deberá diferenciar claramente qué elementos son componentes y cómo se relacionan entre sí (relaciones padre-hijo). También se deberán incluir los servicios y el resto de clases auxiliares.
+>>>>>>> 3d6326bbc2811d7c7d72f07b332099b56f358353
 ### Bibliography

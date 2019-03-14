@@ -1,0 +1,28 @@
+
+.card .card-header-primary .card .card-header-primary .card-text,
+.card .card-header-primary:not(.card-header-icon):not(.card-header-text),
+.card.bg-primary,
+.card.card-rotate.bg-primary .front,
+.card.card-rotate.bg-primary .back,
+.btn-primary,
+.form-check .form-check-label .circle .check{
+    background: #ad9df5;
+}
+
+.btn-primary:not(:disabled):not(.disabled){
+    background: #ad9df5;
+}
+
+
+.form-check .form-check-input:checked~.circle{
+    border-color: #ad9df5;
+
+}
+
+.text-primary {
+    color: #ad9df5 !important;
+}
+
+a{
+    color:#747287 !important;
+}

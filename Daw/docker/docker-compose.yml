@@ -1,0 +1,32 @@
+
+version: "3"
+
+services:
+  daw_grupo9:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_DATABASE=daw_grupo9
+      - MYSQL_ROOT_PASSWORD=1995gdo4ev
+      - MYSQL_USER=Grupo9
+      - MYSQL_PASSWORD=URJCDAWGrupo9
+    ports:
+      - 3306:3306
+    network_mode: bridge
+
+  daw:
+
+    image: daw:latest
+    ports:
+      - 8080:8443
+    links:
+      - daw_grupo9
+    depends_on:
+      - daw_grupo9
+    network_mode: bridge
+    restart: always
+    environment:
+      WAIT_HOSTS: daw_grupo9:3306
+      SPRING_DATASOURCE_URL: jdbc:mysql://daw_grupo9/daw_grupo9?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: Grupo9
+      SPRING_DATASOURCE_PASSWORD: URJCDAWGrupo9

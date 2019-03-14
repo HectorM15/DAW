@@ -1,0 +1,289 @@
+{{>Header}}
+
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- FIRST CARD: ITEMS-->
+                <div class="card">
+                    <div class="card">
+                        {{#concept}}
+                            {{#idConcept}}
+                                {{#picture}}
+                                    <img src="/uploads/{{concept.picture}}" class="card-img-top" width="400" height="341"/>
+                                {{/picture}}
+                            {{/idConcept}}
+                        {{/concept}}
+                    </div>
+                    <div class="card-header card-header-primary ">
+                        <h4 class="card-title">URL</h4>
+                        <p class="card-category">
+                            <a href="http:\www.urlcdelconcepto.com">http:\www.urlcdelconcepto.com</a>
+                        </p>
+                    </div>
+                    <div class="card-body">
+
+                        <h3>ÍTEMS</h3>
+
+
+                        {{#concept}}
+                            <div class="row" id="showMore"
+                            {{#items}}
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <h5>{{info}}</h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-check form-check-radio form-check-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio"
+                                                       name={{idItem}}
+                                                       id={{idItem}}
+                                                       value="option1" {{#state}}checked{{/state}} {{^state}}disabled{{/state}}>
+                                                Correct
+                                                <span class="circle" style=" border-color: #ad9df5">
+                                                        <span class="check"></span>
+                                                    </span>
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-radio form-check-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio"
+                                                       name={{idItem}}
+                                                       id={{idItem}}
+                                                       value="option2" {{#state}}disabled{{/state}} {{^state}}checked{{/state}}>
+                                                Incorrect
+                                                <span class="circle">
+                                                  <span class="check"></span>
+                                             </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#deleteItem{{idItem}}"
+                                                    name="deleteItem{{idItem}}">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </label>
+
+                                        <div class="modal fade" name="deleteItem{{idItem}}"
+                                             id="deleteItem{{idItem}}" tabindex="-1"
+                                             role="dialog" aria-labelledby="deleteItem{{idItem}}"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteItem{{idItem}}">Borrar
+                                                            ítem</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>¿Está seguro de qué que deseea borrar? Se perderán todos
+                                                            los datos.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="/deleteItem/{{idItem}}/{{idConcept}}">
+                                                            <i class="material-icons">delete</i>
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {{/items}}
+
+                        {{/concept}}
+                    </div>
+                </div>
+                <div id="cargando" style="display:none">
+                    <img
+                            width="200"
+                            src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"/>
+                    <p>
+                        Cargando contenido
+                    </p>
+                </div>
+                <button type="button" id="loadMoreItems" class="btn btn-primary align-self-md-start">Más Ítems</button>
+            </div>
+
+            <script src="/js/loadMore.js"></script>
+            <script>loadMoreItems()</script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#loadMoreItems').click(function () {
+                        $("#cargando").show();
+                        loadMoreItems();
+                        $("#cargando").hide();
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</div>
+<!-- END FIRST CARD: ÍTEMS -->
+
+<!-- FUNCTION: ADD ÍTEM -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="content">
+                <a class="material-icons" style="cursor: pointer"
+                   data-toggle="modal"
+                   href="#AddItem{{idConcept}}" id="buttonItem"
+                   data-target="#AddItem{{idConcept}}">add_circle_outline</a>
+                <!-- Modal Add concept-->
+                <div class="modal" id="AddItem{{idConcept}}" tabindex="-1" role="dialog"
+                     aria-labelledby="AddItem{{idConcept}}">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Crear
+                                    Item</h5>
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/saveItem/{{idConcept}}" method="post"
+                                      enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        {{#item}}<input type="hidden" name="idConcept"
+                                                        value="{{idItem}}"
+                                                        class="form-control"/>
+                                        {{/item}}
+                                        {{#item}}
+                                            <input type="hidden" name="idConcept" value="{{id}}"
+                                                   class="form-control"/>
+                                        {{/item}}
+                                        <label for="title">Contenido del item</label>
+                                        <input type="text" id="info" name="info"
+                                               {{#item}}value="{{info}}"{{/item}}
+                                               class="form-control"/>
+
+                                        <input type="checkbox" id="state" name="state"
+                                               {{#item}}value="{{state}}"{{/item}}>
+                                                Correcto
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cerrar
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">Guardar
+                                            item
+                                        </button>
+                                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END FUNCTION: ADD ÍTEM -->
+    <!-- START UNCORRECTED CUESTION-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>PENDING ANSWERS</h3>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                {{#questions}}
+                                    {{#setAnswer}}
+                                        {{^correct}}
+                                            <tr>
+                                                <td>
+                                                    <b>{{toString}}</b>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-radio form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="radio"
+                                                                   name="RB_Answer{{idAnswer}}"
+                                                                   id="inlineRadioRC{{idAnswer}}" value="option1"
+                                                                   onclick="updateAnswer('true',{{idAnswer}},{{#concept}} {{idConcept}} {{/concept}})">
+                                                            Correct
+                                                            <span class="circle">
+                                        <span class="check"></span>
+                                    </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-radio form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="radio"
+                                                                   name="RB_Answer{{idAnswer}}"
+                                                                   id="inlineRadioRI{{idAnswer}}"
+                                                                   onclick="updateAnswer('false',{{idAnswer}},{{#concept}} {{idConcept}} {{/concept}})"
+                                                                   value="option2"> Incorrect
+                                                            <span class="circle">
+                                         <span class="check"></span>
+                                    </span>
+                                                        </label>
+                                                    </div>
+                                            </tr>
+                                        {{/correct}}
+                                    {{/setAnswer}}
+                                {{/questions}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#loadMoreItems').click(function () {
+            $("#cargando").show();
+            loadMoreItems();
+            $("#cargando").hide();
+        });
+
+
+    });
+
+    function updateAnswer(correcto, idAnswer, idConcept) {
+
+        if (correcto === "true")
+            $.ajax({
+                url: "/updateAnswerTrue/" + idAnswer + "/" + idConcept
+
+            })
+        else
+            $.ajax({
+                url: "/updateAnswerFalse/" + idAnswer + "/" + idConcept
+            })
+
+
+    }
+
+    function reFresh() {
+        location.reload(true)
+    }
+</script>
+{{>Footer}}
+

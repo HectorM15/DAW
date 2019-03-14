@@ -1,0 +1,163 @@
+{{>Header}}
+<!-- Modal Diagram-->
+<div class="modal" id="chartModal" tabindex="-1" role="dialog" aria-labelledby="chartModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Diagramas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body" id="chartModalBody">
+                <div id="main" style="width: 500px;height:400px;"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card" id="datosTabla" name="{{statitics}}">
+                    {{#concept}}
+                        {{#idConcept}}
+                            {{#picture}}
+                                <img src="/uploads/{{concept.picture}}" class="card-img-top" width="400"
+                                     height="341"/>
+                            {{/picture}}
+                        {{/idConcept}}
+                    {{/concept}}
+                </div>
+                <div class="card-header card-header-primary">
+                    {{#user}}
+                        <h2 class="card-title">{{title}}</h2>
+                        <h3>{{toStringStatistics}}</h3>
+                    {{/user}}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>CORREGIDAS</h3>
+
+                        </div>
+                        <div class="col-md-6">
+                            <h3>PENDIENTES DE CORREGIR</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{#answer}}
+                                <p>{{getQuestionInfo}} : {{info}} :
+                                    <i class="material-icons">
+                                        {{#isCorrect}}done{{/isCorrect}}
+                                        {{^isCorrect}}clear{{/isCorrect}}
+                                    </i></p>
+                            {{/answer}}
+
+                        </div>
+
+                        <div class="col-md-6">
+                            {{#answerPending}}
+                                <p>{{getQuestionInfo}} : {{info}}</p>
+                            {{/answerPending}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" id="diagramas" class="btn btn-primary" style="margin-left: 39%" data-toggle="modal"
+            data-target="#chartModal">
+        Diagramas <i class="material-icons">signal_cellular_alt</i>
+    </button>
+    <button type="submit" id="generarQuestion" onclick="createQuestion({{#concept}}{{idConcept}}{{/concept}})"
+            class="btn btn-primary" style="margin-left: 39%" data-toggle="modal" data-target="#addQuestion">
+        Generar pregunta <i class="material-icons">add</i>
+    </button>
+</div>
+
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //Init chart
+        var myChart = echarts.init(document.getElementById('main'));
+
+        //Init options
+        option = {
+            legend: {},
+            tooltip: {},
+            dataset: {
+                dimensions: ['product', 'Preguntas Correctas', 'Preguntas Incorrectas', 'Preguntas Sin Corregir'],
+                source: [{}]
+            },
+            xAxis: {type: 'category'},
+            yAxis: {},
+            // Declare several bar series, each will be mapped
+            // to a column of dataset.source by default.
+            series: [
+                {type: 'bar'},
+                {type: 'bar'},
+                {type: 'bar'}
+            ]
+        };
+        // use configuration item and data specified to show chart
+        myChart.setOption(option);
+
+
+        //Diagrams button
+        $('#diagramas').click(function () {
+            //var myChart = echarts.init(document.getElementById('main'));
+            var dato = {};
+            var tema = [];
+            var data = $("#datosTabla").attr("name").split(':');
+            dato = {
+                product: "Concepto",
+                'Preguntas Correctas': data[1],
+                'Preguntas Incorrectas': data[2],
+                'Preguntas No': data[0]
+            };
+            tema.push(dato);
+
+
+            option = {
+                legend: {},
+                tooltip: {},
+                dataset: {
+                    dimensions: ['product', 'Preguntas Correctas', 'Preguntas Incorrectas', 'Preguntas No'],
+                    source: tema
+                },
+                xAxis: {type: 'category'},
+                yAxis: {},
+                // Declare several bar series, each will be mapped
+                // to a column of dataset.source by default.
+                series: [
+                    {type: 'bar'},
+                    {type: 'bar'},
+                    {type: 'bar'}
+                ]
+            };
+            myChart.setOption(option);
+        });
+
+    });
+
+    function createQuestion(id) {
+
+        var urlPage = "/createQuestion/" + id;
+        $.ajax({
+            url: urlPage
+        }).done(function (data) {
+            $('#main-panel').append(data);
+            $('#addQuestion').modal('show');
+        })
+    }
+
+</script>
+{{>Footer}}
+

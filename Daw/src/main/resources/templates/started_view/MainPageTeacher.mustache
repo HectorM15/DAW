@@ -1,0 +1,219 @@
+<!-- Modal Diagram-->
+<div class="modal" id="chartModal" tabindex="-1" role="dialog" aria-labelledby="chartModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" chartModal>Diagramas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body" id="chartModalBody">
+                <div id="main" style="width: 500px;height:400px;"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Add lessons-->
+<div class="modal" id="AddLessonModal" tabindex="-1" role="dialog" aria-labelledby="AddLessonModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AddLessonModalHead">Crear Tema</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                          <i class="material-icons">create</i>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Nombre del concepto">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar nuevo tema</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Add concept-->
+<div class="modal" id="AddConceptModal" tabindex="-1" role="dialog" aria-labelledby="AddConceptModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Crear concepto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                          <i class="material-icons">create</i>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Nombre del concepto">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar nuevo concepto</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="contenedor" class="col-md-12">
+    <div class="container-fluid">
+        <!-- Row con la barra de busqueda -->
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form col-md-12">
+                    <div class="input-group no-border col-md-8">
+                        <input type="text" value="" class="form-control" placeholder="Buscar...">
+                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                            <i class="material-icons">search</i>
+                            <div class="ripple-container"></div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 border-dark badge-white">
+                <div class="row">
+                    <i class="material-icons">arrow_right</i>
+                    <p>TEMA 1 </p>
+                    <pre style='display:inline'>&#09;</pre>
+                    <pre style='display:inline'>&#09;</pre>
+                    <pre style='display:inline'>&#09;</pre>
+                    <i class="material-icons">delete</i>
+                </div>
+                <div class="row">
+                    <i class="material-icons">arrow_right</i>
+                    <p>TEMA 2 </p>
+                    <pre style='display:inline'>&#09;</pre>
+                    <pre style='display:inline'>&#09;</pre>
+                    <pre style='display:inline'>&#09;</pre>
+                    <i class="material-icons">delete</i>
+                </div>
+                <div class="row">
+                    <i class="material-icons">arrow_drop_down</i>
+                    <p>TEMA 3 </p>
+                    <pre style='display:inline'>&#09;</pre>
+                    <pre style='display:inline'>&#09;</pre>
+                    <pre style='display:inline'>&#09;</pre>
+                    <i class="material-icons">delete</i>
+                </div>
+                <div class="row">
+                    <pre style='display:inline'>&#09;</pre>
+                    <a id="concepto1" href="TeacherConcept_View.html">CONCEPTO 1</a>
+                    <pre style='display:inline'>&#09;</pre>
+                    <pre style='display:inline'>&#09;</pre>
+                    <i class="material-icons">delete</i>
+                </div>
+                <div class="row">
+                    <pre style='display:inline'>&#09;</pre>
+                    <p>CONCEPTO 2</p>
+                    <pre style='display:inline'>&#09;</pre>
+                    <pre style='display:inline'>&#09;</pre>
+                    <i class="material-icons">delete</i>
+                </div>
+                <div class="row">
+                    <pre style='display:inline'>&#09;</pre>
+                    <p>CONCEPTO 3</p>
+                    <pre style='display:inline'>&#09;</pre>
+                    <pre style='display:inline'>&#09;</pre>
+                    <i class="material-icons">delete</i>
+                </div>
+                <div class="row">
+                    <pre style='display:inline'>&#09;</pre>
+                    <i class="material-icons" style="cursor: pointer" data-placement="bottom" data-toggle="modal"
+                       data-target="#AddConceptModal">add_circle_outline</i>
+                </div>
+                <div class="row">
+                    <i class="material-icons">arrow_drop_down</i>
+                    <p>TEMA 4 </p>
+                    <pre style='display:inline'>&#09;</pre>
+                    <pre style='display:inline'>&#09;</pre>
+                    <pre style='display:inline'>&#09;</pre>
+                    <i class="material-icons">delete</i>
+                </div>
+                <div class="row">
+                    <pre style='display:inline'>&#09;</pre>
+                    <a>CONCEPTO 1</a>
+                    <pre style='display:inline'>&#09;</pre>
+                    <pre style='display:inline'>&#09;</pre>
+                    <i class="material-icons">delete</i>
+                </div>
+                <div class="row">
+                    <pre style='display:inline'>&#09;</pre>
+                    <p>CONCEPTO 2</p>
+                    <pre style='display:inline'>&#09;</pre>
+                    <pre style='display:inline'>&#09;</pre>
+                    <i class="material-icons">delete</i>
+                </div>
+                <div class="row">
+                    <pre style='display:inline'>&#09;</pre>
+                    <p>CONCEPTO 3</p>
+                    <pre style='display:inline'>&#09;</pre>
+                    <pre style='display:inline'>&#09;</pre>
+                    <i class="material-icons">delete</i>
+                </div>
+                <div class="row">
+                    <pre style='display:inline'>&#09;</pre>
+                    <i class="material-icons" style="cursor: pointer" data-placement="bottom" data-toggle="modal"
+                       data-target="#AddConceptModal">add_circle_outline</i>
+                </div>
+                <div class="row">
+                    <i class="material-icons" style="cursor: pointer" data-toggle="modal" href="#AddLessonModal"
+                       data-target="#AddLessonModal">add_circle_outline</i>
+                </div>
+            </div>
+            <div class="col-md-2 border-dark badge-white align-content-md-end">
+                <button type="button" class="btn btn-default align-self-md-end" data-toggle="modal"
+                        data-target="#chartModal">Diagramas
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    // based on prepared DOM, initialize echarts instance
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // specify chart configuration item and data
+    var option = {
+        title: {
+            text: ' % RESPUESTAS'
+        },
+        tooltip: {},
+        legend: {
+            data:['Sales']
+        },
+        xAxis: {
+            data: ["Correctas","Incorrectas","Sin responder"]
+        },
+        yAxis: {},
+        series: [{
+            name: 'Sales',
+            type: 'bar',
+            data: [5, 20, 36]
+        }]
+    };
+
+    // use configuration item and data specified to show chart
+    myChart.setOption(option);
+</script>

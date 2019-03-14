@@ -1,0 +1,347 @@
+{{>Header}}
+<!-- Modal Diagram-->
+<div class="modal" id="chartModal" tabindex="-1" role="dialog" aria-labelledby="chartModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Diagramas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body" id="chartModalBody">
+                <div id="main" style="width: 500px;height:400px;"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{#admin}}
+    <div class="modal" id="deleteConceptLesson" tabindex="-1" role="dialog" aria-labelledby="chartModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tipoBorrado">Borrar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body" id="deleteModal">
+
+                </div>
+                <div class="modal-footer">
+                    <a class="material-icons" id="btn-borrar" style="cursor: pointer">delete</a>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Add lessons-->
+    <div class="modal" id="AddLessonModal" tabindex="-1" role="dialog" aria-labelledby="AddLessonModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="AddLessonModalHead">Crear Tema</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/saveLesson" method="post">
+                        <div class="form-group">
+                            {{#lesson}}<input type="hidden" name="id" value="{{id}}" class="form-control"/>{{/lesson}}
+                            <label for="title">Nombre del tema</label>
+                            <input type="text" id="title" name="title"
+                                   {{#lesson}}value="{{title}}"{{/lesson}} class="form-control"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar tema</button>
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/admin}}
+
+<div id="contenedor" class="col-md-12">
+    <div class="container-fluid">
+        <!-- Row con la barra de busqueda -->
+        <div class="row">
+            <div class="col-md-8">
+                <form class="form col-md-12" action="/lessonSearch" method="post" id="searchForm">
+                    <div class="input-group no-border col-md-12">
+                        <input type="text" value="" class="form-control" id="searchInput" name="searchText"
+                               placeholder="Buscar...">
+                        <button type="submit" id="searchButton" class="btn btn-white btn-round btn-just-icon">
+                            <i class="material-icons">search</i>
+                            <input type="hidden" name="_csrf" value="{{token}}"/>
+                            <div class="ripple-container"></div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row" id="showMore">
+            {{#lessons}}
+                <div id="accordion" role="tablist" class="col-md-10">
+                    <div class="card card-collapse" data-parent="#accordion">
+                        <div class="card-header" role="tab" id="headingOne">
+                            <h4 class="mb-0">
+                                <a data-toggle="collapse" href="#{{title}}-{{id}}" aria-expanded="true"
+                                   aria-controls="{{title}}-{{id}}">
+                                    {{title}}
+                                    <i class="material-icons" style="float: left">keyboard_arrow_down</i>
+                                </a>
+                                {{#admin}}
+                                    <a class="material-icons" data-toggle="modal" onClick="addModalInfo('tema',{{id}});"
+                                       data-target="#deleteConceptLesson"
+                                       style="float: right; cursor: pointer">delete</a>
+                                {{/admin}}
+                                {{#student}}
+                                    <a style="float: right">{{getAnswerCorrectOfConcepts}}
+                                        :{{getAnswerIncorrectOfConcepts}}:{{getAnswerPendingOfConcepts}}
+                                        / {{getSizeOfAnswerPendingOfConcepts}}</a>
+                                {{/student}}
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="{{title}}-{{id}}" class="collapse" role="tabpanel"
+                             aria-labelledby="{{title}}-{{id}}"
+                             nameTitle="{{title}}"
+                             name="{{getAnswerCorrectOfConcepts}}:{{getAnswerIncorrectOfConcepts}}:{{getAnswerPendingOfConcepts}}">
+                            <div class="card-body">
+                                <ul class="list-group col-md-12">
+                                    {{#conceptSet}}
+                                        <div class="row">
+                                            <li class="list-group-item col-md-8">
+                                                {{#admin}}
+                                                    <a href="/TeacherConceptView/{{idConcept}}"> {{title}}</a>
+                                                    <!-- <a onclick="openConcept('/TeacherConcept_View/{{idConcept}}', this)" name="{{title}}"> {{title}}</a>-->
+                                                {{/admin}}
+                                                {{#student}}
+                                                    <a href="/StudentConceptView/{{idConcept}}"> {{title}}</a>
+                                                {{/student}}
+                                                {{^logged}}
+                                                    <p>{{title}}</p>
+                                                {{/logged}}
+                                            </li>
+                                            {{#admin}}
+                                                <a class="material-icons" data-toggle="modal"
+                                                   onClick="addModalInfo('concepto',{{idConcept}});"
+                                                   data-target="#deleteConceptLesson"
+                                                   style="cursor: pointer">delete</a>
+                                            {{/admin}}
+                                            {{#student}}
+                                                <a style="cursor: pointer">{{toStringMetrics}}</a>
+                                            {{/student}}
+                                        </div>
+                                    {{/conceptSet}}
+                                    {{#admin}}
+                                        <a class="material-icons" style="cursor: pointer"
+                                           data-toggle="modal"
+                                           href="#AddConceptModal{{id}}" id="buttonNewConcept"
+                                           data-target="#AddConceptModal{{id}}">add_circle_outline</a>
+                                        <!-- Modal Add concept-->
+                                        <div class="modal" id="AddConceptModal{{id}}" tabindex="-1" role="dialog"
+                                             aria-labelledby="AddConceptModal{{id}}">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Crear
+                                                            concepto</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true"></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="/saveConcept/{{id}}" method="post"
+                                                              enctype="multipart/form-data">
+                                                            <div class="form-group">
+                                                                {{#concept}}<input type="hidden" name="idConcept"
+                                                                                   value="{{idConcept}}"
+                                                                                   class="form-control"/>{{/concept}}
+                                                                {{#concept}}
+                                                                    <input type="hidden" name="idLesson" value="{{id}}"
+                                                                           class="form-control"/>{{/concept}}
+                                                                <label for="title">Nombre del concepto</label>
+                                                                <input type="text" id="title" name="title"
+                                                                       {{#concept}}value="{{title}}"{{/concept}}
+                                                                       class="form-control"/>
+                                                            </div>
+                                                            <div class="fileinput fileinput-new text-center"
+                                                                 data-provides="fileinput">
+                                                                <div>
+                                                                    <span class="btn btn-raised btn-default btn-file">
+                                                                        <input type="file" name="file"/>
+                                                                    </span>
+                                                                    <a class="btn btn-danger btn-round fileinput-exists"
+                                                                       data-dismiss="fileinput"><i
+                                                                            class="fa fa-times"></i> Remove</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Cerrar
+                                                                </button>
+                                                                <button type="submit" class="btn btn-primary">Guardar
+                                                                    concepto
+                                                                </button>
+                                                                <input type="hidden" name="_csrf" value="{{token}}"/>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    {{/admin}}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/lessons}}
+        </div>
+        <div id="download" style="diplay:none">
+            <img
+                    width="200"
+                    src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"/>
+            <p>
+                Cargando contenido
+            </p>
+        </div>
+        <button type="button" id="loadMore" class="btn btn-primary align-self-md-end">Más temas</button>
+        <div class="row">
+            <div class="col-md-10">
+                {{#admin}}
+                    <a class="material-icons" style="cursor: pointer" data-toggle="modal" href="#AddLessonModal"
+                       data-target="#AddLessonModal">add_circle_outline</a>
+                {{/admin}}
+            </div>
+            {{#logged}}
+                <div class="col-md-2 badge-white align-content-md-end">
+                    <button type="button" id="diagramas" class="btn btn-primary align-self-md-end" data-toggle="modal"
+                            data-target="#chartModal">Diagramas
+                    </button>
+                </div>
+            {{/logged}}
+        </div>
+    </div>
+</div>
+
+<script src="/js/loadMore.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //ATTR
+        var myChart = echarts.init(document.getElementById('main'));
+
+        $("#download").show();
+        $("#download").hide();
+        $('#loadMore').click(function () {
+            $("#download").show();
+            loadMoreLesson();
+            $("#download").hide();
+        });
+
+        //Init chart
+        var myChart = echarts.init(document.getElementById('main'));
+
+        //Init options
+        option = {
+            legend: {},
+            tooltip: {},
+            dataset: {
+                dimensions: ['product', 'Preguntas Correctas', 'Preguntas Incorrectas', 'Preguntas Sin Corregir'],
+                source: [{}]
+            },
+            xAxis: {type: 'category'},
+            yAxis: {},
+            // Declare several bar series, each will be mapped
+            // to a column of dataset.source by default.
+            series: [
+                {type: 'bar'},
+                {type: 'bar'},
+                {type: 'bar'}
+            ]
+        };
+        // use configuration item and data specified to show chart
+        myChart.setOption(option);
+
+        //Diagrams button
+        $('#diagramas').click(function () {
+            var dato = {};
+            var tema = [];
+            datos = $(".collapse.show").each(function (key, value) {
+                var data = $(this).attr("name").split(':');
+                console.log(data);
+                dato = {
+                    product: $(this).attr("nameTitle"),
+                    'Preguntas Correctas': data[0],
+                    'Preguntas Incorrectas': data[1],
+                    'Preguntas No': data[2]
+                }
+                tema.push(dato);
+            });
+
+            option = {
+                legend: {},
+                tooltip: {},
+                dataset: {
+                    dimensions: ['product', 'Preguntas Correctas', 'Preguntas Incorrectas', 'Preguntas No'],
+                    source: tema
+                },
+                xAxis: {type: 'category'},
+                yAxis: {},
+                // Declare several bar series, each will be mapped
+                // to a column of dataset.source by default.
+                series: [
+                    {type: 'bar'},
+                    {type: 'bar'},
+                    {type: 'bar'}
+                ]
+            };
+            myChart.setOption(option);
+        });
+
+    });
+
+    function addModalInfo(tipoBorrado, id) {
+        $("#tipoBorrado").text("Borrar " + tipoBorrado);
+        $("#deleteModal").html('<h4>¿Está seguro de querer borrar el ' + tipoBorrado + ' ?</h4>');
+        if (tipoBorrado === "concepto")
+            $("#btn-borrar").attr('href', "/deleteConcept/" + id);
+        else
+            $("#btn-borrar").attr('href', "/deleteLessons/" + id);
+    }
+
+
+    function openConcept(url, elem) {
+        $.get(url).done(function (data) {
+            var elemId = $(elem).attr('name');
+            $('#tabContainer').append('<div class="tab-pane active" id="' + elemId + '" role="tabpanel" aria-labelledby="' + elemId + '-tab"></div>');
+            $('#' + elemId).append(data);
+            $('#tabParent').append('<li class="nav-item" id="li-' + elemId + '"><a class="nav-link" href="#' + elemId + '" onclick="showTab(\'' + elemId + '\')">' + elemId +
+                    '</a><span onclick="disposeTab(\'' + elemId + '\')">x</span></li>');
+        });
+    }
+
+    function showTab(data) {
+        $('.tab-pane').removeClass('active');
+        $('#' + elemId).addClass('active');
+        $('#main-panel').load("items.mustache");
+    }
+
+    function disposeTab(elem) {
+        $('#' + elem).remove();
+        $('#li-' + elem).remove();
+    }
+</script>
+
+{{>Footer}}

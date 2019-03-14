@@ -1,0 +1,73 @@
+{{#itemSet}}
+    <div class="row">
+        <div class="col-md-4">
+            <h5>{{info}}</h5>
+        </div>
+        <div class="col-md-4">
+            <div class="form-check form-check-radio form-check-inline">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio"
+                           name={{idItem}}
+                           id={{idItem}}
+                           value="option1" {{#state}}checked{{/state}} {{^state}}disabled{{/state}}>
+                    Correct
+                    <span class="circle" style=" border-color: #ad9df5">
+                                                        <span class="check"></span>
+                                                    </span>
+                </label>
+            </div>
+            <div class="form-check form-check-radio form-check-inline">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio"
+                           name={{idItem}}
+                           id={{idItem}}
+                           value="option2" {{#state}}disabled{{/state}} {{^state}}checked{{/state}}>
+                    Incorrect
+                    <span class="circle">
+                                                  <span class="check"></span>
+                                             </span>
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#deleteItem{{idItem}}"
+                        name="deleteItem{{idItem}}">
+                    <i class="material-icons">delete</i>
+                </button>
+
+
+                <div class="modal fade" name="deleteItem{{idItem}}"
+                     id="deleteItem{{idItem}}" tabindex="-1"
+                     role="dialog" aria-labelledby="deleteItem{{idItem}}"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteItem{{idItem}}">Borrar
+                                    ítem</h5>
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>¿Está seguro de qué que deseea borrar? Se perderán todos
+                                    los datos.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="/deleteItem/{{idItem}}/{{idConcept}}">
+                                    <i class="material-icons">delete</i>
+                                </a>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </label>
+        </div>
+    </div>
+{{/itemSet}}

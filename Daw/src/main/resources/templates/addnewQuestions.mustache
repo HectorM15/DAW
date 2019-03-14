@@ -1,0 +1,220 @@
+<!-- MODAL TIPO 0-->
+{{#question0}}
+    <div class="modal" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="addQuestion">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addQuestionHead">{{#question}}{{info}}{{/question}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/saveAnswer/{{#question}}{{idQuestion}}{{/question}}" method="get">
+                        <div class="form-group">
+                            <label for="title">Respuesta</label>
+                            <input type="text" id="info" name="info"
+                                   {{#answer}}value="{{info}}"{{/answer}} class="form-control"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar respuesta</button>
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/question0}}
+<!-- END MODAL TIPO 0 -->
+<!-- MODAL TIPO 1-->
+{{#question1}}
+    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog"
+         aria-labelledby="myExtraLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="text-center">{{#question}}{{info}}{{/question}}</h4>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-check form-check-radio form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio"
+                                   name="RB_Answer{{#question}}{{idQuestion}}{{/question}}"
+                                   id="inlineRadioRC{{#question}}{{idQuestion}}{{/question}}" value="option1"
+                                   onclick="sendAnswer('true',{{#question}}{{idQuestion}}{{/question}})"> Correct
+                            <span class="circle">
+                                            <span class="check"></span>
+                                        </span>
+                        </label>
+                    </div>
+                    <div class="form-check form-check-radio form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio"
+                                   name="RB_Answer{{#question}}{{idQuestion}}{{/question}}"
+                                   id="inlineRadioRI{{#question}}{{idQuestion}}{{/question}}"
+                                   onclick="sendAnswer('false',{{#question}}{{idQuestion}}{{/question}})"> Incorrect
+                            <span class="circle">
+                                         <span class="check"></span>
+                                    </span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="reFresh()">Enviar respuesta</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{{/question1}}
+<!-- END MODAL TIPO 1 -->
+<!-- MODAL TIPO 2-->
+{{#question2}}
+    <div class="modal" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="addQuestion">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addQuestionHead">{{#question}}{{info}}{{/question}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/saveAnswer/{{#question}}{{idQuestion}}{{/question}}" method="get">
+                        <div class="form-group">
+                            <label for="title">Respuesta</label>
+                            <input type="text" id="info" name="info"
+                                   {{#answer}}value="{{info}}"{{/answer}} class="form-control"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar respuesta</button>
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/question2}}
+<!-- END MODAL TIPO 2 -->
+<!-- MODAL TIPO 3-->
+{{#question3}}
+    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog"
+         aria-labelledby="myExtraLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="text-center">{{#question}}{{info}}{{/question}}</h4>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <form id="textQuestion">
+                            {{#options}}
+                                <input class="form-check-input" type="checkbox"
+                                       name="{{info}}">{{info}}
+                            {{/options}}
+                        </form>
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary"
+                            onclick="addAnswer({{#question}}{{idQuestion}}{{/question}})">Enviar respuesta
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{{/question3}}
+<!-- END MODAL TIPO 3 -->
+<!-- MODAL TIPO 4-->
+{{#question4}}
+    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog"
+         aria-labelledby="myExtraLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center">{{#question}}{{info}}{{/question}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-center">1</td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="...">
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="...">
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="...">
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="...">
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="...">
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Modal body -->
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="addAnswer(1)">Enviar respuesta</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{{/question4}}
+<!-- END MODAL TIPO 4 -->
+<script>
+    function addAnswer(idQuestion) {
+        var ret = "";
+        var total = "";
+        $("#textQuestion").children().each(function () {
+            if ($(this).is(':checked')) {
+                ret = ret + "sss" + $(this).attr("name");
+            }
+            total = total + "sss" + $(this).attr("name");
+        });
+
+        var urlPage = "/sendSelectedItems/" + idQuestion + "/" + ret + "/" + total;
+        $.ajax({
+            url: urlPage
+        }).done(function (data) {
+            reFresh();
+        })
+    }
+
+    function reFresh() {
+        location.reload(true)
+    }
+
+    function sendAnswer(correct, idQuestion) {
+        console.log(idQuestion);
+        console.log(correct);
+        $.ajax({
+            url: "/sendAnswerTrue/" + idQuestion + "/" + correct
+        })
+    }
+
+</script>

@@ -1,0 +1,125 @@
+{{#lessons}}
+    <div id="accordion" role="tablist" class="col-md-10">
+        <div class="card card-collapse" data-parent="#accordion">
+            <div class="card-header" role="tab" id="headingOne">
+                <h4 class="mb-0">
+                    <a data-toggle="collapse" href="#{{title}}-{{id}}" aria-expanded="true"
+                       aria-controls="{{title}}-{{id}}">
+                        {{title}}
+                        <i class="material-icons" style="float: left">keyboard_arrow_down</i>
+                    </a>
+                    {{#admin}}
+                        <a class="material-icons" data-toggle="modal" onClick="addModalInfo('tema',{{id}});"
+                           data-target="#deleteConceptLesson"
+                           style="float: right" style="cursor: pointer">delete</a>
+                    {{/admin}}
+                    {{#student}}
+                        <a style="float: right">{{getAnswerCorrectOfConcepts}}
+                            :{{getAnswerIncorrectOfConcepts}}:{{getAnswerPendingOfConcepts}}
+                            /{{getSizeOfAnswerPendingOfConcepts}}</a>
+                    {{/student}}
+                    </a>
+                </h4>
+            </div>
+
+            <div id="{{title}}-{{id}}" class="collapse" role="tabpanel"
+                 aria-labelledby="{{title}}-{{id}}"
+                 nameTitle="{{title}}"
+                 name="{{getAnswerCorrectOfConcepts}}:{{getAnswerIncorrectOfConcepts}}:{{getAnswerPendingOfConcepts}}">
+                <div class="card-body">
+                    <ul class="list-group col-md-12">
+                        {{#conceptSet}}
+                            <div class="row">
+                                <li class="list-group-item col-md-8">
+                                    {{#admin}}
+                                        <a onclick="openConcept('/TeacherConcept_View/{{idConcept}}', this)"
+                                           name="{{title}}"> {{title}}</a>
+                                    {{/admin}}
+                                    {{#student}}
+                                        <a href="/StudentConceptView/{{idConcept}}"> {{title}}</a>
+                                    {{/student}}
+                                    {{^logged}}
+                                        <p>{{title}}</p>
+                                    {{/logged}}
+                                </li>
+                                {{#admin}}
+                                    <a class="material-icons" data-toggle="modal"
+                                       onClick="addModalInfo('concepto',{{idConcept}});"
+                                       data-target="#deleteConceptLesson"
+                                       style="cursor: pointer">delete</a>
+                                {{/admin}}
+                                {{#student}}
+                                    {{#setQuestion}}
+                                        <a style="cursor: pointer">{{getAnswerCorrect}}
+                                            :{{getAnswerIncorrect}}:{{getAnswerPending}}
+                                            /{{getSizeQuestions}}</a>
+                                    {{/setQuestion}}
+                                {{/student}}
+                            </div>
+                        {{/conceptSet}}
+                        {{#admin}}
+                            <a class="material-icons" style="cursor: pointer"
+                               data-toggle="modal"
+                               href="#AddConceptModal{{id}}" id="buttonNewConcept"
+                               data-target="#AddConceptModal{{id}}">add_circle_outline</a>
+                            <!-- Modal Add concept-->
+                            <div class="modal" id="AddConceptModal{{id}}" tabindex="-1" role="dialog"
+                                 aria-labelledby="AddConceptModal{{id}}">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Crear
+                                                concepto</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/saveConcept/{{id}}" method="post"
+                                                  enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    {{#concept}}<input type="hidden" name="idConcept"
+                                                                       value="{{idConcept}}"
+                                                                       class="form-control"/>{{/concept}}
+                                                    {{#concept}}
+                                                        <input type="hidden" name="idLesson" value="{{id}}"
+                                                               class="form-control"/>{{/concept}}
+                                                    <label for="title">Nombre del concepto</label>
+                                                    <input type="text" id="title" name="title"
+                                                           {{#concept}}value="{{title}}"{{/concept}}
+                                                           class="form-control"/>
+                                                </div>
+                                                <div class="fileinput fileinput-new text-center"
+                                                     data-provides="fileinput">
+                                                    <div>
+                                                                    <span class="btn btn-raised btn-default btn-file">
+                                                                        <input type="file" name="file"/>
+                                                                    </span>
+                                                        <a class="btn btn-danger btn-round fileinput-exists"
+                                                           data-dismiss="fileinput"><i
+                                                                class="fa fa-times"></i> Remove</a>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Cerrar
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Guardar
+                                                        concepto
+                                                    </button>
+                                                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {{/admin}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/lessons}}
